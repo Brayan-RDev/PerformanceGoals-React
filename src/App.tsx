@@ -9,9 +9,10 @@ export function App() {
     <>
     <BrowserRouter>
       <Navbar />
-      <div className='min-h-[80vh]'>
+      <div className='w-full min-h-[80vh] flex items-start p-8'>
             <Routes>
               <Route path="/home" element={<Home />} />
+              <Route path="/categorias" element={<CardCategoria descricao="Categoria 1"/>} />
             </Routes>
       </div>
       <Footer />

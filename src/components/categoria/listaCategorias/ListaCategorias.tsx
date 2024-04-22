@@ -15,9 +15,9 @@ export function ListaCategoria() {
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
-  async function buscarTemas() {
+  async function buscarCategorias() {
     try {
-      await buscar('/temas', setCategoria, {
+      await buscar('/categorias', setCategoria, {
         headers: { Authorization: token },
       });
     } catch (error: any) {
@@ -36,7 +36,7 @@ export function ListaCategoria() {
   }, [token]);
 
   useEffect(() => {
-    buscarTemas();
+    buscarCategorias();
   }, [categoria.length]);
   return (
     <>

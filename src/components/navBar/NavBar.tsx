@@ -19,6 +19,7 @@ export function Navbar() {
           <li><Link to='/cadastrar' className='p-4'>Contato</Link></li>
           <li><Link to='/cadastrar' className='p-4'>Sobre nós</Link></li>
           <li><Link to='/categorias' className='p-4'>Categorias </Link></li>
+          <li><Link to='/cadastroCategoria' className='p-4'>Cadastrar categoria </Link></li>
         </ul>
       </nav>
     </header>

@@ -5,7 +5,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
 import Categoria from '../../../models/Categoria';
 
-export function FormularioTema() {
+export function FormularioCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export function FormularioTema() {
   const token = usuario.token;
 
   async function buscarPorId(id: string) {
-    await buscar(`/temas/${id}`, setCategoria, {
+    await buscar(`/categorias/${id}`, setCategoria, {
       headers: {
         Authorization: token,
       },
@@ -38,18 +38,18 @@ export function FormularioTema() {
     console.log(JSON.stringify(categoria))
   }
 
-  async function gerarNovoTema(e: ChangeEvent<HTMLFormElement>) {
+  async function gerarNovaCategoria(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (id !== undefined) {
       try {
-        await atualizar(`/temas`, categoria, setCategoria, {
+        await atualizar(`/categorias`, categoria, setCategoria, {
           headers: {
             'Authorization': token
           }
         })
 
-        alert('Tema atualizado com sucesso')
+        alert('Categoria atualizado com sucesso')
         retornar()
 
       } catch (error: any) {
@@ -57,27 +57,27 @@ export function FormularioTema() {
           alert('O token expirou, favor logar novamente')
           handleLogout()
         } else {
-          alert('Erro ao atualizar o Tema')
+          alert('Erro ao atualizar a Categoria')
         }
 
       }
 
     } else {
       try {
-        await cadastrar(`/temas`, categoria, setCategoria, {
+        await cadastrar(`/categorias`, categoria, setCategoria, {
           headers: {
             'Authorization': token
           }
         })
 
-        alert('Tema cadastrado com sucesso')
+        alert('Categoria cadastrada com sucesso')
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
           alert('O token expirou, favor logar novamente')
           handleLogout()
         } else {
-          alert('Erro ao cadastrado o Tema')
+          alert('Erro ao cadastrado a Categoria')
         }
       }
     }
@@ -86,7 +86,7 @@ export function FormularioTema() {
   }
 
   function retornar() {
-    navigate("/temas")
+    navigate("/categorias")
   }
 
   useEffect(() => {
@@ -102,7 +102,7 @@ export function FormularioTema() {
         {id === undefined ? 'Cadastre um novo tema' : 'Editar tema'}
       </h1>
 
-      <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoTema}>
+      <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
         <div className="flex flex-col gap-2">
           <label htmlFor="descricao">Descrição do tema</label>
           <input
